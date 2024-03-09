@@ -1,0 +1,9 @@
+{
+    "translationFields": [
+        "name",
+        "displayName",
+        "title",
+        "description",
+        "desc"
+    ]
+}

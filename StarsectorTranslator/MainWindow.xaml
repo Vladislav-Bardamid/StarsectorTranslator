@@ -1,0 +1,79 @@
+﻿<Window x:Class="StarsectorTranslator.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:StarsectorTranslator"
+    mc:Ignorable="d"
+    Title="Starsector Translator" Height="700" Width="1200"
+    Style="{StaticResource CustomWindowStyle}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Margin" Value="5" />
+                </Style>
+            </StackPanel.Resources>
+            <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                Click="OpenGameFolder">
+                <Image Width="32" Height="32" Source="Resources\open_folder.png" />
+            </Button>
+            <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                <Image Width="32" Height="32" Source="Resources\open_file.png" />
+            </Button>
+            <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                <Image Width="32" Height="32" Source="Resources\deepl_icon.png" />
+            </Button>
+            <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                <Image Width="32" Height="32" Source="Resources\diskette.png" />
+            </Button>
+            <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                <Image Width="32" Height="32" Source="Resources\download.png" />
+            </Button>
+            <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                <Image Width="32" Height="32" Source="Resources\save_file.png" />
+            </Button>
+        </StackPanel>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Lines}" ColumnWidth="*"
+            CanUserAddRows="false" AutoGenerateColumns="false" HeadersVisibility="Column"
+            SelectionUnit="Cell">
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="FontSize" Value="16" />
+                </Style>
+            </DataGrid.CellStyle>
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Gray" />
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Translated"
+                    Binding="{Binding Translated, Mode=TwoWay}" IsReadOnly="false">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="TextWrapping" Value="Wrap" />
+                            <Setter Property="AcceptsReturn" Value="true" />
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Original" Binding="{Binding Original, Mode=TwoWay}"
+                    IsReadOnly="True">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
